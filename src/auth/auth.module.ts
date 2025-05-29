@@ -8,7 +8,7 @@ import { JwtStrategy } from './jwt-strategy';
 
 @Module({
   imports: [
-    UsersModule,
+    UsersModule, // service딴에서 사용했기때문에 의존성 주입
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
