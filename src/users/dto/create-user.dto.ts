@@ -1,3 +1,4 @@
+//회원가입 시
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
@@ -12,6 +13,7 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
+  @ApiProperty({ description: '역할', example: 'mentor | mentee' })
   role: string;
 
   @IsNotEmpty()
