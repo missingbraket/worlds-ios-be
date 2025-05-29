@@ -7,6 +7,7 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
+  //회원가입
   async create(createUserDto: CreateUserDto) {
     const hashedPassword: string = await (bcrypt as any).hash(
       createUserDto.password,
@@ -15,16 +16,16 @@ export class UsersService {
     return this.prisma.user.create({
       data: {
         email: createUserDto.email,
-        nickname: createUserDto.nickname,
+        name: createUserDto.name,
         password: hashedPassword,
       },
     });
   }
-
+  //로그인시 유저 찾기
   async findByEmail(email: string) {
     return this.prisma.user.findUnique({ where: { email } });
   }
-
+  //토큰에서 유저 ID 추출 -> 유저 정보 조회
   async findById(id: number) {
     return this.prisma.user.findUnique({ where: { id } });
   }
