@@ -1,16 +1,18 @@
 import { Body, Controller, Patch, RawBody, UseGuards, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth() // Swagger에서 Bearer Token 인증을 사용하기 위한 설정!!! <<이게없어서 비번재설정이 안됏음
   @Patch('changepassword')
   async changePassword(
     @Body() changePasswordDto: ChangePasswordDto,
