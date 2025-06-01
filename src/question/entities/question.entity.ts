@@ -1,6 +1,6 @@
 import { UserEntity } from 'src/users/entities/user.entity';
-import { AnswerEntity } from './answer.entitiy';
-import { AttachmentEntity } from './attachment.entitiy';
+import { AnswerEntity } from 'src/answer/entities/answer.entitiy';
+import { AttachmentEntity } from 'src/answer/entities/attachment.entitiy';
 
 
 export class questionEntity {
