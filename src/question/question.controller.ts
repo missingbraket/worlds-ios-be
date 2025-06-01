@@ -53,7 +53,7 @@ export class QuestionController {
     if (req.user.role !== 'MENTEE') {
     throw new BadRequestException('멘티만 질문 작성이 가능합니다.');
   }
-    const question = await this.questionService.createQeustion(
+    const question = await this.questionService.createQuestion(
       req.user.id,
       dto,
       req.files,
