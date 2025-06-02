@@ -41,7 +41,7 @@ model Answer {
   id          Int      @id @default(autoincrement())
   content     String
   createdAt   DateTime @default(now())
-  Question    Question @relation(fields: [questionId], references: [id])
+  question    Question @relation(fields: [questionId], references: [id])
   questionId  Int
   user        User     @relation(fields: [userId], references: [id])
   userId      Int
