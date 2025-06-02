@@ -1,9 +1,9 @@
 import { UserEntity } from 'src/users/entities/user.entity';
 import { AnswerEntity } from 'src/answer/entities/answer.entitiy';
-import { AttachmentEntity } from 'src/answer/entities/attachment.entitiy';
+import { AttachmentEntity } from 'src/question/entities/attachment.entitiy';
 
 
-export class questionEntity {
+export class QuestionEntity {
   id: number;
   title: string;
   content: string;
@@ -12,7 +12,7 @@ export class questionEntity {
   answers?: AnswerEntity[];
   attachments?: AttachmentEntity[];
 
-  constructor(partial: Partial<questionEntity>) {
+  constructor(partial: Partial<QuestionEntity>) {
     Object.assign(this, partial);
     if (partial.user) {
       this.user = new UserEntity(partial.user);

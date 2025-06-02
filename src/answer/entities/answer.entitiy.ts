@@ -1,5 +1,4 @@
 import { UserEntity } from "src/users/entities/user.entity";
-import { PostEntity } from "./post.entity";
 
 export class AnswerEntity {
     id: number;

@@ -48,9 +48,10 @@ export class QuestionController {
     AzureStorageInterceptor,
   )
   @ApiOperation({ summary: '게시글 생성' })
+  @ApiBearerAuth()
   async createQuestion(@Request() req, @Body() dto: CreateQuestionDto) {
 
-    if (req.user.role !== 'MENTEE') {
+    if (req.user.role !== 'mentee') {
     throw new BadRequestException('멘티만 질문 작성이 가능합니다.');
   }
     const question = await this.questionService.createQuestion(
@@ -63,6 +64,7 @@ export class QuestionController {
 
   // 전체 게시글 조회
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Get('question')
   @ApiOperation({ summary: '전체 게시글 조회' })
   async getQuestion() {
@@ -71,6 +73,7 @@ export class QuestionController {
   }
 
   // 단일 게시글 조회
+  @ApiBearerAuth()
   @Get('question/:id')
   @ApiOperation({ summary: '단일 게시글 조회' })
   async getQuestionById(@Param('id') id: string) {
